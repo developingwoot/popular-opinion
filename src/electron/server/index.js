@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
+const surveyRepository = require('./service/survey-service');
 
 function start()
 {
     app.get('/', function (req, res) {
-        res.send('Hello World!')
+        res.send("You're on the home page.")
     })
 
     app.listen(3000, function () {
