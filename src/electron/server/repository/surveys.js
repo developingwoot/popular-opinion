@@ -1,19 +1,19 @@
 const db = require('./db');
-const table = 'survey';
+const table = 'surveys';
 
 function get(predicate)
 {
-    return db.get(table).find(predicate).value();
+    return db.get(table, predicate);
 }
 
 function getAll()
 {
-    return db.get(table).value();
+    return db.getAll(table);
 }
 
 function getById(id)
 {
-    return db.get(table).getById(id);
+    return db.getById(table, id);
 }
 
 function addItem(item)

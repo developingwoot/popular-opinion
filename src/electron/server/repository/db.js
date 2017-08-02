@@ -1,6 +1,7 @@
 const low = require('lowdb');
-const db = low('db.json');
+const db = low('./db.json');
 db._.mixin(require('lodash-id'));
+
 
 function get(table, predicate)
 {
@@ -14,12 +15,13 @@ function getAll(table)
 
 function getById(table, id)
 {
-    return db.get(table).getById(id);
+    console.log("db", db.get('surveys').value());
+    return db.get(table).getById(id).value();
 }
 
 function addItem(table, item)
 {
-    return db.get(table).insert(item);
+    return db.get(table).insert(item).write();
 }
 
 function updateItem(table, id, item)
@@ -29,7 +31,7 @@ function updateItem(table, id, item)
 
 function removeItem(table, id)
 {
-    return db.get(table).removeById(id);
+    return db.get(table).removeById(id).write();
 }
 
 module.exports = {

@@ -1,0 +1,78 @@
+{
+  "surveys": [
+    {
+      "question": "Why did David grab 5 stones?",
+      "answers": [
+        {
+          "count": "43",
+          "answer": "Grind Taco meat"
+        }
+      ],
+      "id": "d16571bd-0a77-43d9-9ab9-9f45128cccbe"
+    },
+    {
+      "question": "What's your favorite Bethel dessert?",
+      "answers": [
+        {
+          "count": "23",
+          "answer": "Kentucky Butter Cake"
+        }
+      ],
+      "id": "c070248a-0eeb-4403-978f-744ccec3e23e"
+    },
+    {
+      "question": "What's your favorite Bethel meal?",
+      "answers": [
+        {
+          "count": "23",
+          "answer": "Chicken Tikki Masala"
+        }
+      ],
+      "id": "a8151325-bdf7-4f42-b2f2-3127d7080a9d"
+    },
+    {
+      "question": "What's the hardest building to find in Fishkill",
+      "answers": [
+        {
+          "count": "23",
+          "answer": "Office building south"
+        }
+      ],
+      "id": "f274ab71-1380-4976-8120-04dbdbe4f6ba"
+    },
+    {
+      "question": "What Bible character would you like to meet after the resurrection?",
+      "answers": [
+        {
+          "count": 23,
+          "answer": "Noah"
+        },
+        {
+          "count": 10,
+          "answer": "Jonah"
+        }
+      ],
+      "id": "e6449331-ee9c-4d47-97fe-3a5d7a811981"
+    },
+    {
+      "question": "When do you sing kingdom melodies?",
+      "answers": [
+        {
+          "count": "43",
+          "answer": "While driving"
+        }
+      ],
+      "id": "a90a0013-6556-4fd3-aabc-56eda73b78f8"
+    },
+    {
+      "question": "What is the most popular IPTV channel?",
+      "answers": [
+        {
+          "count": "43",
+          "answer": "17"
+        }
+      ],
+      "id": "02cfe0a3-8f91-4d68-8115-1b0572e4737c"
+    }
+  ]
+}
