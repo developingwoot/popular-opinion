@@ -5,7 +5,7 @@ const passport = require('passport')
 
 /* GET api listing. */
 router.get('/surveys/', (req, res) => {
-    let allSurveys = db.getAll();
+    let allSurveys = db.get();
     
     res.setHeader('Content-Type', 'application/json');
     res.json(allSurveys);
@@ -27,25 +27,27 @@ router.get('/surveys/:id', (req, res) => {
     res.json(survey);
 });
 
-router.post('/surveys/', passport.authenticate('local', (req, res) => {
+router.post('/surveys/', passport.authenticationMiddleware(), (req, res) => {
+    console.log("survey", req.body);
     let survey = req.body.survey;
+
     res.setHeader('Content-Type', 'application/json');
 
-    survey.id = db.addItem(survey);
+    survey.id = db.add(survey);
 
     res.json(survey);
-}))
+})
 
-router.put('/surveys/:id', passport.authenticate('local', (req, res) => {
+router.put('/surveys/:id', passport.authenticationMiddleware(), (req, res) => {
     let survey = req.body;
     res.setHeader('Content-Type', 'application/json');
-    survey = db.updateItem(survey);
+    survey = db.update(survey);
     res.json(survey);
-}))
+})
 
-router.delete('/surveys/:id',passport.authenticate('local', (req, res) => {
-    survey = db.removeItem(req.params.id);    
+router.delete('/surveys/:id',passport.authenticationMiddleware(), (req, res) => {
+    survey = db.remove(req.params.id);    
     res.json(survey);
-}))
+})
 
 module.exports = router;

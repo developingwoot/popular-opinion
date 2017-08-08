@@ -2,7 +2,7 @@ let surveyRepository = require("../repository/surveys");
 
 function getRandomFive() {
     // get all surveys
-    const survey = surveyRepository.getAll();
+    const survey = surveyRepository.get();
     
 
     let surveyList = [];

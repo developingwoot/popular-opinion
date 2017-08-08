@@ -2,13 +2,11 @@ const express = require('express')
 const app = express()
 const surveyRepository = require('./service/survey-service');
 const passport = require('passport');
-const session = require('express-session')
+const session = require('express-session');
+const bodyParser = require('body-parser');
 
 function start()
 {
-    // Get our API routes
-    const api = require(__dirname + '/routes/api');
-
     require('./authentication').init(app)
 
     app.use(session({
@@ -18,7 +16,14 @@ function start()
     app.use(passport.initialize())
     app.use(passport.session())
 
+    // Parsers for POST data
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }));
+
     require('./user').init(app)
+
+    // Get our API routes
+    const api = require(__dirname + '/routes/api');
 
     // Set our api routes
     app.use('/api', api);

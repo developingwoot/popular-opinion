@@ -1,41 +1,54 @@
 const db = require('./db');
-const table = 'surveys';
 
-function get(predicate)
+function get()
 {
-    return db.get(table, predicate);
-}
-
-function getAll()
-{
-    return db.getAll(table);
+    return db.allDocs({
+        include_docs: true,
+        attachments: true
+    })
 }
 
 function getById(id)
 {
-    return db.getById(table, id);
+    return db.get(id);
 }
 
-function addItem(item)
+function add(item)
 {
-    return db.get(table).insert(item);
+    let id = db.uuid();
+    item._id = id;
+    return db.put(item);
 }
 
-function updateItem(id, item)
+function update(id, item)
 {
-    return db.get(table).updateById(id, item);
+    // fetch 
+    return db.get(id).then(function (doc) {
+        // update 
+        doc.question = item.question;
+        doc.answers = item.answers;
+        // put them back
+        return db.put(doc);
+    }).then(function () {
+        return db.get(id);
+    });
 }
 
-function removeItem(id)
+function remove(id)
 {
-    return db.get(table).removeById(id);
+    db.get(id).then(function(doc) {
+        return db.remove(doc);
+    }).then(function (result) {
+        // handle result
+    }).catch(function (err) {
+        console.log(err);
+    });
 }
 
 module.exports = {
     get : get,
-    getAll : getAll,
     getById : getById,
-    addItem : addItem,
-    updateItem : updateItem,
-    removeItem : removeItem
+    add : add,
+    update : update,
+    remove : remove
 }
