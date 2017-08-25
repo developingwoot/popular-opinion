@@ -11,6 +11,8 @@ function start()
 
     app.use(session({
         secret: 'tasy-tacos',
+        resave: true,
+        saveUninitialized: true
     }))
 
     app.use(passport.initialize())

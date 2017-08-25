@@ -2,47 +2,37 @@ const db = require('./db');
 
 function get()
 {
-    return db.allDocs({
-        include_docs: true,
-        attachments: true
-    })
+    return db.get('surveys').value();
 }
 
 function getById(id)
 {
-    return db.get(id);
+    return db.get('surveys')
+      .find({ id: id })
+      .value();
 }
 
 function add(item)
 {
     let id = db.uuid();
-    item._id = id;
-    return db.put(item);
+    item.id = id;
+    console.log("add item", item);
+    db.get('surveys').push({id : item.id, question: item.question, answers : item.answers }).write();
 }
 
 function update(id, item)
 {
-    // fetch 
-    return db.get(id).then(function (doc) {
-        // update 
-        doc.question = item.question;
-        doc.answers = item.answers;
-        // put them back
-        return db.put(doc);
-    }).then(function () {
-        return db.get(id);
-    });
+    db.get('surveys')
+        .find({ id: id })
+        .assign({ question: item.question, answers: item.answers })
+        .write()
 }
 
 function remove(id)
 {
-    db.get(id).then(function(doc) {
-        return db.remove(doc);
-    }).then(function (result) {
-        // handle result
-    }).catch(function (err) {
-        console.log(err);
-    });
+    db.get('surveys')
+        .remove({ id : id })
+        .write();
 }
 
 module.exports = {

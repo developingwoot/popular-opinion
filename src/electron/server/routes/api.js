@@ -27,21 +27,19 @@ router.get('/surveys/:id', (req, res) => {
     res.json(survey);
 });
 
+
+
 router.post('/surveys/', passport.authenticationMiddleware(), (req, res) => {
-    console.log("survey", req.body);
     let survey = req.body.survey;
-
     res.setHeader('Content-Type', 'application/json');
-
     survey.id = db.add(survey);
-
     res.json(survey);
 })
 
 router.put('/surveys/:id', passport.authenticationMiddleware(), (req, res) => {
-    let survey = req.body;
+    let survey = req.body.survey;
     res.setHeader('Content-Type', 'application/json');
-    survey = db.update(survey);
+    survey = db.update(req.params.id, survey);
     res.json(survey);
 })
 
